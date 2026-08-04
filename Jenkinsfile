@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+    }
+
     parameters {
         string(
             name: 'TEST_FILE',
@@ -14,7 +18,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh 'npm ci'
-                sh 'npx playwright install --with-deps'
+                sh 'npx playwright install'
             }
         }
 
