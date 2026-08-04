@@ -17,7 +17,7 @@ await expect(newuser).toBeVisible();
 const name = page.locator('input[name="name"]');
 await name.fill('Mithun');
 const email = page.locator('input[data-qa="signup-email"]');
-await email.fill('mithun@example111112122.com');
+await email.fill('mithun@example1111121622.com');
 
 const signupbutton = page.locator('button', { hasText: 'Signup' });
 await signupbutton.click();

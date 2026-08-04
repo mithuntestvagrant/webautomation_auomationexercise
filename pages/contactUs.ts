@@ -8,7 +8,7 @@ export class ContactUsPage {
   }
 
   get contactUs() {
-    return this.page.locator('a', { hasText: 'Contact us' });
+        return this.page.locator('a[href="/contact_us"], a:has-text("Contact Us")');
   }
     get name() {   
         return this.page.locator('input[name="name"]'); 

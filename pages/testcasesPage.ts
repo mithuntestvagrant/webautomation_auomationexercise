@@ -8,7 +8,7 @@ export class TestCasesPage {
   }
 
   get testCasesLink() {
-    return this.page.locator('a[href="/test_cases"]').first();
+    return this.page.locator('a[href="/test_cases"]', { hasText: 'Test Cases' }).first();
   }
 
  

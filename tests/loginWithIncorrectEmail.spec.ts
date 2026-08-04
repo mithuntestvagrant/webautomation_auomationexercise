@@ -18,6 +18,11 @@ test('Login User', async ({ page }) => {
     // Login
     await loginPage.login.click();
 
+    // Attempt login with incorrect credentials
+    await loginPage.email.fill(loginData.email);
+    await loginPage.password.fill(loginData.password);
+    await loginPage.loginButton.click();
+
     await expect(validationPage.incorrectEmailPassword).toBeVisible();  
     
 

@@ -61,6 +61,22 @@ export class ValidationPage {
         return this.page.locator('h2', { hasText: 'Searched Products' });
     }
 
+    get subscription() {
+        return this.page.locator('h2', { hasText: 'Subscription' });
+    }   
+     get successMessageSubscription() {
+        return this.page.locator('div[class="alert-success alert"]');
+    }
+
+    get verifyfirstProduct() {
+
+        return this.page.locator("//a[@href='/product_details/1']");
+    }
+
+    get verifysecondProduct() {
+        return this.page.locator("//a[@href='/product_details/2']");
+    }   
+    
 
     
 
