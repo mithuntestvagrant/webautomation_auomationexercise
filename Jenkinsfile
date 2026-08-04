@@ -1,6 +1,14 @@
 pipeline {
     agent any
 
+    parameters {
+        string(
+            name: 'TEST_FILE',
+            defaultValue: 'tests/contactUs.spec.ts',
+            description: 'Enter the Playwright test file'
+        )
+    }
+
     stages {
 
         stage('Install Dependencies') {
@@ -12,7 +20,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'npx playwright test'
+                sh "npx playwright test ${params.TEST_FILE}"
             }
         }
     }
