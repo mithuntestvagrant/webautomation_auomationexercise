@@ -1,42 +1,69 @@
+
 import { test, expect } from '@playwright/test';
+
 import { SignupPage } from '../pages/signupPage';
 import { ValidationPage } from '../pages/validationPage';
-import { HomePage } from '../pages/homePage';
-import { AccountPage } from '../pages/accountPage';
 
-test('Register user', async ({ page }) => {
+import { Helper } from '../utils/helper';
 
-    // Test Data
-    const userData = {
-        name: 'Mithun',
-        email: 'mithun@example464.com',
-        password: 'MyPassword123',
-        
-    };
+import { existingUserData } from '../testData/existingUserData';
+
+
+test('Register user with existing email', async ({ page }) => {
 
     // Page Objects
     const signupPage = new SignupPage(page);
     const validationPage = new ValidationPage(page);
-    const homePage = new HomePage(page);
-    const accountPage = new AccountPage(page);
+
+    // Helper
+    const helper = new Helper(page);
+
 
     // Open application
-    await page.goto('http://automationexercise.com');
+    await helper.openApplication();
 
-    await expect(validationPage.home).toBeVisible();
 
-    // Signup
-    await signupPage.signup.click();
+    // Verify Home Page
+    await expect(
+        validationPage.home
+    ).toBeVisible();
 
-    await expect(validationPage.newUserSignup).toBeVisible();
 
-    await signupPage.name.fill(userData.name);
-    await signupPage.email.fill(userData.email);
+    // Click Signup / Login
+    await helper.click(
+        signupPage.signup
+    );
 
-    await signupPage.signupbutton.click();
 
-    await expect(validationPage.enterAccountInformation).toBeVisible();
+    // Verify New User Signup
+    await expect(
+        validationPage.newUserSignup
+    ).toBeVisible();
 
-    await expect(validationPage.emailAlreadyExist).toBeVisible();
-    
-})
+
+    // Enter Name
+    await helper.fill(
+        signupPage.name,
+        existingUserData.name
+    );
+
+
+    // Enter Existing Email
+    await helper.fill(
+        signupPage.email,
+        existingUserData.email
+    );
+
+
+    // Click Signup
+    await helper.click(
+        signupPage.signupbutton
+    );
+
+
+    // Verify Email Already Exists
+    await expect(
+        validationPage.emailAlreadyExist
+    ).toBeVisible();
+
+});

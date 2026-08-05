@@ -1,117 +1,15 @@
-import { test, expect } from '@playwright/test';
-import { SignupPage } from '../pages/signupPage';
-import { ValidationPage } from '../pages/validationPage';
-import { HomePage } from '../pages/homePage';
-import { AccountPage } from '../pages/accountPage';
-
-test('Register user', async ({ page }) => {
-
-    // Test Data
-    const userData = {
-        name: 'Mithun',
-        email: 'mithun@example464.com',
-        password: 'MyPassword123',
-        day: '10',
-        month: '5',
-        year: '1994',
-        firstName: 'Mithun',
-        lastName: 'Mishra',
-        company: 'ABC Company',
-        address1: '123 Main Street',
-        address2: 'Apt 4B',
-        country: 'Canada',
-        state: 'Ontario',
-        city: 'Toronto',
-        zipcode: 'M5V 2H1',
-        mobileNumber: '+1 416-123-4567'
-    };
-
-    // Page Objects
-    const signupPage = new SignupPage(page);
-    const validationPage = new ValidationPage(page);
-    const homePage = new HomePage(page);
-    const accountPage = new AccountPage(page);
-
-    // Open application
-    await page.goto('http://automationexercise.com');
-
-    await expect(validationPage.home).toBeVisible();
-
-    // Signup
-    await signupPage.signup.click();
-
-    await expect(validationPage.newUserSignup).toBeVisible();
-
-    await signupPage.name.fill(userData.name);
-    await signupPage.email.fill(userData.email);
-
-    await signupPage.signupbutton.click();
-
-    await expect(validationPage.enterAccountInformation).toBeVisible();
-
-    // Account information
-    await homePage.title.check();
-    await homePage.password.fill(userData.password);
-
-    await homePage.days.selectOption(userData.day);
-    await homePage.months.selectOption(userData.month);
-    await homePage.years.selectOption(userData.year);
-
-    await homePage.newsletter.check();
-    await homePage.offers.check();
-
-    // Address information
-    await homePage.firstName.fill(userData.firstName);
-    await homePage.lastName.fill(userData.lastName);
-    await homePage.company.fill(userData.company);
-    await homePage.address1.fill(userData.address1);
-    await homePage.address2.fill(userData.address2);
-
-    await homePage.country.selectOption(userData.country);
-    await homePage.state.fill(userData.state);
-    await homePage.city.fill(userData.city);
-    await homePage.zipcode.fill(userData.zipcode);
-    await homePage.mobileNumber.fill(userData.mobileNumber);
-
-    // Create account
-    await homePage.createAccountButton.click();
-
-    await expect(validationPage.accountCreated).toBeVisible();
-
-    await homePage.continueButton.first().click();
-
-    // Verify login
-    await expect(validationPage.loggedInAs).toBeVisible();
-
-    // Delete account
-    await accountPage.deleteAccount.click();
-
-    await expect(validationPage.accountDeleted).toBeVisible();
-
-    await accountPage.continueButton.first().click();
-});
-
-
-
-//====using base url from helpers functions=====
-
-
-
 // import { test, expect } from '@playwright/test';
-
 // import { SignupPage } from '../pages/signupPage';
 // import { ValidationPage } from '../pages/validationPage';
 // import { HomePage } from '../pages/homePage';
 // import { AccountPage } from '../pages/accountPage';
-
-// import { Helper } from '../utils/Helper';
 
 // test('Register user', async ({ page }) => {
 
 //     // Test Data
 //     const userData = {
 //         name: 'Mithun',
-//         email: 'mithun@example464.com',
+//         email: 'mithun@example4694.com',
 //         password: 'MyPassword123',
 //         day: '10',
 //         month: '5',
@@ -134,120 +32,261 @@ test('Register user', async ({ page }) => {
 //     const homePage = new HomePage(page);
 //     const accountPage = new AccountPage(page);
 
-//     // Helper
-//     const helper = new Helper(page);
-
 //     // Open application
-//     await helper.openApplication();
+//     await page.goto('http://automationexercise.com');
 
 //     await expect(validationPage.home).toBeVisible();
 
 //     // Signup
 //     await signupPage.signup.click();
 
-//     await expect(
-//         validationPage.newUserSignup
-//     ).toBeVisible();
+//     await expect(validationPage.newUserSignup).toBeVisible();
 
 //     await signupPage.name.fill(userData.name);
 //     await signupPage.email.fill(userData.email);
 
 //     await signupPage.signupbutton.click();
 
-//     await expect(
-//         validationPage.enterAccountInformation
-//     ).toBeVisible();
+//     await expect(validationPage.enterAccountInformation).toBeVisible();
 
 //     // Account information
 //     await homePage.title.check();
+//     await homePage.password.fill(userData.password);
 
-//     await homePage.password.fill(
-//         userData.password
-//     );
-
-//     await homePage.days.selectOption(
-//         userData.day
-//     );
-
-//     await homePage.months.selectOption(
-//         userData.month
-//     );
-
-//     await homePage.years.selectOption(
-//         userData.year
-//     );
+//     await homePage.days.selectOption(userData.day);
+//     await homePage.months.selectOption(userData.month);
+//     await homePage.years.selectOption(userData.year);
 
 //     await homePage.newsletter.check();
 //     await homePage.offers.check();
 
 //     // Address information
-//     await homePage.firstName.fill(
-//         userData.firstName
-//     );
+//     await homePage.firstName.fill(userData.firstName);
+//     await homePage.lastName.fill(userData.lastName);
+//     await homePage.company.fill(userData.company);
+//     await homePage.address1.fill(userData.address1);
+//     await homePage.address2.fill(userData.address2);
 
-//     await homePage.lastName.fill(
-//         userData.lastName
-//     );
-
-//     await homePage.company.fill(
-//         userData.company
-//     );
-
-//     await homePage.address1.fill(
-//         userData.address1
-//     );
-
-//     await homePage.address2.fill(
-//         userData.address2
-//     );
-
-//     await homePage.country.selectOption(
-//         userData.country
-//     );
-
-//     await homePage.state.fill(
-//         userData.state
-//     );
-
-//     await homePage.city.fill(
-//         userData.city
-//     );
-
-//     await homePage.zipcode.fill(
-//         userData.zipcode
-//     );
-
-//     await homePage.mobileNumber.fill(
-//         userData.mobileNumber
-//     );
+//     await homePage.country.selectOption(userData.country);
+//     await homePage.state.fill(userData.state);
+//     await homePage.city.fill(userData.city);
+//     await homePage.zipcode.fill(userData.zipcode);
+//     await homePage.mobileNumber.fill(userData.mobileNumber);
 
 //     // Create account
 //     await homePage.createAccountButton.click();
 
-//     await expect(
-//         validationPage.accountCreated
-//     ).toBeVisible();
+//     await expect(validationPage.accountCreated).toBeVisible();
 
-//     await homePage.continueButton
-//         .first()
-//         .click();
+//     await homePage.continueButton.first().click();
 
 //     // Verify login
-//     await expect(
-//         validationPage.loggedInAs
-//     ).toBeVisible();
+//     await expect(validationPage.loggedInAs).toBeVisible();
 
 //     // Delete account
 //     await accountPage.deleteAccount.click();
 
-//     await expect(
-//         validationPage.accountDeleted
-//     ).toBeVisible();
+//     await expect(validationPage.accountDeleted).toBeVisible();
 
-//     await accountPage.continueButton
-//         .first()
-//         .click();
+//     await accountPage.continueButton.first().click();
 // });
+
+
+
+//====using base url from helpers functions=====
+
+
+
+import { test, expect } from '@playwright/test';
+
+import { SignupPage } from '../pages/signupPage';
+import { ValidationPage } from '../pages/validationPage';
+import { HomePage } from '../pages/homePage';
+import { AccountPage } from '../pages/accountPage';
+
+import { Helper } from '../utils/helper';
+
+test('Register user', async ({ page }) => {
+
+    // Test Data
+    const userData = {
+        name: 'Mithun',
+        email: 'mithun@example24644.com',
+        password: 'MyPassword123',
+        day: '10',
+        month: '5',
+        year: '1994',
+        firstName: 'Mithun',
+        lastName: 'Mishra',
+        company: 'ABC Company',
+        address1: '123 Main Street',
+        address2: 'Apt 4B',
+        country: 'Canada',
+        state: 'Ontario',
+        city: 'Toronto',
+        zipcode: 'M5V 2H1',
+        mobileNumber: '+1 416-123-4567'
+    };
+
+    // Page Objects
+    const signupPage = new SignupPage(page);
+    const validationPage = new ValidationPage(page);
+    const homePage = new HomePage(page);
+    const accountPage = new AccountPage(page);
+
+    // Helper
+    const helper = new Helper(page);
+
+    // Open application
+    await helper.openApplication();
+
+    // Verify Home Page
+    await expect(
+        validationPage.home
+    ).toBeVisible();
+
+    // Signup
+    await helper.click(
+        signupPage.signup
+    );
+
+    await expect(
+        validationPage.newUserSignup
+    ).toBeVisible();
+
+    await helper.fill(
+        signupPage.name,
+        userData.name
+    );
+
+    await helper.fill(
+        signupPage.email,
+        userData.email
+    );
+
+    await helper.click(
+        signupPage.signupbutton
+    );
+
+    await expect(
+        validationPage.enterAccountInformation
+    ).toBeVisible();
+
+    // Account information
+    await helper.check(
+        homePage.title
+    );
+
+    await helper.fill(
+        homePage.password,
+        userData.password
+    );
+
+    await helper.selectOption(
+        homePage.days,
+        userData.day
+    );
+
+    await helper.selectOption(
+        homePage.months,
+        userData.month
+    );
+
+    await helper.selectOption(
+        homePage.years,
+        userData.year
+    );
+
+    await helper.check(
+        homePage.newsletter
+    );
+
+    await helper.check(
+        homePage.offers
+    );
+
+    // Address information
+    await helper.fill(
+        homePage.firstName,
+        userData.firstName
+    );
+
+    await helper.fill(
+        homePage.lastName,
+        userData.lastName
+    );
+
+    await helper.fill(
+        homePage.company,
+        userData.company
+    );
+
+    await helper.fill(
+        homePage.address1,
+        userData.address1
+    );
+
+    await helper.fill(
+        homePage.address2,
+        userData.address2
+    );
+
+    await helper.selectOption(
+        homePage.country,
+        userData.country
+    );
+
+    await helper.fill(
+        homePage.state,
+        userData.state
+    );
+
+    await helper.fill(
+        homePage.city,
+        userData.city
+    );
+
+    await helper.fill(
+        homePage.zipcode,
+        userData.zipcode
+    );
+
+    await helper.fill(
+        homePage.mobileNumber,
+        userData.mobileNumber
+    );
+
+    // Create account
+    await helper.click(
+        homePage.createAccountButton
+    );
+
+    await expect(
+        validationPage.accountCreated
+    ).toBeVisible();
+
+    await helper.clickFirst(
+        homePage.continueButton
+    );
+
+    // Verify login
+    await expect(
+        validationPage.loggedInAs
+    ).toBeVisible();
+
+    // Delete account
+    await helper.click(
+        accountPage.deleteAccount
+    );
+
+    await expect(
+        validationPage.accountDeleted
+    ).toBeVisible();
+
+    await helper.clickFirst(
+        accountPage.continueButton
+    );
+});
 
 
 

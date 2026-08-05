@@ -1,33 +1,53 @@
-import{test,expect} from '@playwright/test';
-import { ProductQuantityPage } from '../pages/productQuantityPage';  
-import { ValidationPage } from '../pages/validationPage';
-import { CartPage } from '../pages/cartPage';
+
+import { test } from '@playwright/test';
+
+import { ProductQuantityPage } from '../pages/productQuantityPage';
 import { ProductPage } from '../pages/productPage';
+
+import { Helper } from '../utils/helper';
+
 
 test('Product Quantity', async ({ page }) => {
 
+    // Page Objects
     const productQuantityPage = new ProductQuantityPage(page);
-    const validationPage = new ValidationPage(page);
-    const cartPage = new CartPage(page);
     const productPage = new ProductPage(page);
-     
-    await page.goto('http://automationexercise.com');
 
-   await productPage.products.click();
+    // Helper
+    const helper = new Helper(page);
 
-    await productPage.viewProduct.click();
 
-   await productQuantityPage.productQuantity.fill('4');
+    // Open application
+    await helper.openApplication();
 
-   // await productQuantityPage.productQuantity.press('keyup');
-   //await waitforTimeout(1000);
-   // await productQuantityPage.productQuantity.press('keyup');
-   //await waitforTimeout(1000);
-   // await productQuantityPage.productQuantity.press('keyup');
-   //await waitforTimeout(1000);
 
-    await page.locator('button.btn.cart:has-text("Add to cart")').click();
-    await productQuantityPage.viewCart.click();
-   
+    // Click Products
+    await helper.click(
+        productPage.products
+    );
 
-})
+
+    // Click View Product
+    await helper.click(
+        productQuantityPage.viewProduct
+    );
+
+
+    // Enter Quantity
+    await helper.fill(
+        productQuantityPage.productQuantity,
+        '4'
+    );
+
+
+    // Add Product to Cart
+    await helper.click(
+        productQuantityPage.addToCart
+    );
+
+
+    // View Cart
+    await helper.click(
+        productQuantityPage.viewCart
+    );
+});

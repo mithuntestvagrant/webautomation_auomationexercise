@@ -1,29 +1,63 @@
+
 import { test, expect } from '@playwright/test';
+
 import { LoginPage } from '../pages/loginPage';
 import { ValidationPage } from '../pages/validationPage';
 
+import { Helper } from '../utils/helper';
+
+import { loginData } from '../testData/loginData';
+
+
 test('Login User', async ({ page }) => {
 
-    const loginData={
-        email: 'mithun@examp77.com',
-        password: 'MyPassword123'
-    };
+    // Page Objects
     const loginPage = new LoginPage(page);
     const validationPage = new ValidationPage(page);
 
-    await page.goto('http://automationexercise.com');
+    // Helper
+    const helper = new Helper(page);
 
-    await expect(validationPage.home).toBeVisible();
+
+    // Open application
+    await helper.openApplication();
+
+
+    // Verify Home Page
+    await expect(
+        validationPage.home
+    ).toBeVisible();
+
 
     // Login
-    await loginPage.login.click();
+    await helper.click(
+        loginPage.login
+    );
 
-    // Attempt login with incorrect credentials
-    await loginPage.email.fill(loginData.email);
-    await loginPage.password.fill(loginData.password);
-    await loginPage.loginButton.click();
 
-    await expect(validationPage.incorrectEmailPassword).toBeVisible();  
-    
+    // Enter Email
+    await helper.fill(
+        loginPage.email,
+        loginData.email
+    );
 
-})
+
+    // Enter Password
+    await helper.fill(
+        loginPage.password,
+        loginData.password
+    );
+
+
+    // Click Login
+    await helper.click(
+        loginPage.loginButton
+    );
+
+
+    // Verify Incorrect Email/Password
+    await expect(
+        validationPage.incorrectEmailPassword
+    ).toBeVisible();
+
+});

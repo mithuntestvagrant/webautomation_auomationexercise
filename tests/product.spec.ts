@@ -1,23 +1,59 @@
-import{test,expect} from '@playwright/test';
-import{ProductPage} from '../pages/productPage';    
+
+import { test, expect } from '@playwright/test';
+
+import { ProductPage } from '../pages/productPage';
 import { ValidationPage } from '../pages/validationPage';
+
+import { Helper } from '../utils/helper';
+
 
 test('Product', async ({ page }) => {
 
-
+    // Page Objects
     const productPage = new ProductPage(page);
     const validationPage = new ValidationPage(page);
 
-    await page.goto('http://automationexercise.com');
+    // Helper
+    const helper = new Helper(page);
 
-    await expect(validationPage.home).toBeVisible();
 
-    await productPage.products.click();
+    // Open application
+    await helper.openApplication();
 
-    await expect(validationPage.allProducts).toBeVisible();
 
-    await productPage.viewProduct.click();
+    // Verify Home Page
+    await expect(
+        validationPage.home
+    ).toBeVisible();
 
-    await expect(page).toHaveURL(/product_details/);
-    await expect(page).toHaveTitle(/Product Details/);
+
+    // Click Products
+    await helper.click(
+        productPage.products
+    );
+
+
+    // Verify All Products
+    await expect(
+        validationPage.allProducts
+    ).toBeVisible();
+
+
+    // Click View Product
+    await helper.click(
+        productPage.viewProduct
+    );
+
+
+    // Verify Product Details URL
+    await expect(
+        page
+    ).toHaveURL(/product_details/);
+
+
+    // Verify Product Details Title
+    await expect(
+        page
+    ).toHaveTitle(/Product Details/);
+
 });

@@ -1,20 +1,41 @@
+
 import { test, expect } from '@playwright/test';
+
 import { TestCasesPage } from '../pages/testcasesPage';
 import { ValidationPage } from '../pages/validationPage';
 
-test('testcases', async ({ page }) => {
+import { Helper } from '../utils/helper';
 
-    const testcase = new TestCasesPage(page);
+
+test('Test Cases', async ({ page }) => {
+
+    // Page Objects
+    const testCasesPage = new TestCasesPage(page);
     const validationPage = new ValidationPage(page);
 
-    await page.goto('http://automationexercise.com');
-
-    await expect(validationPage.home).toBeVisible();
-
-    await testcase.testCasesLink.click();
-
-    await expect(validationPage.testCases).toBeVisible();
+    // Helper
+    const helper = new Helper(page);
 
 
-   
+    // Open application
+    await helper.openApplication();
+
+
+    // Verify Home Page
+    await expect(
+        validationPage.home
+    ).toBeVisible();
+
+
+    // Click Test Cases
+    await helper.click(
+        testCasesPage.testCasesLink
+    );
+
+
+    // Verify Test Cases Page
+    await expect(
+        validationPage.testCases
+    ).toBeVisible();
+
 });
