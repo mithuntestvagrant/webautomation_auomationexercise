@@ -1,14 +1,12 @@
 
 import { Page, Locator } from '@playwright/test';
 
-export class Helper {
+class Helper {
 
-    constructor(private page: Page) {}
-
-    // Open application
-    async openApplication() {
-        await this.page.goto('http://automationexercise.com');
-    }
+    // // Open application
+    // async openApplication() {
+    //     await this.page.goto('http://automationexercise.com');
+    // }
 
     // Click
     async click(element: Locator) {
@@ -52,3 +50,5 @@ export class Helper {
         });
     }
 }
+
+export default new Helper();

@@ -4,7 +4,8 @@ import { test, expect } from '@playwright/test';
 import { ProductPage } from '../pages/productPage';
 import { ValidationPage } from '../pages/validationPage';
 
-import { Helper } from '../utils/helper';
+import commonMethods from '../utils/helper';
+
 
 
 test('Product', async ({ page }) => {
@@ -13,12 +14,10 @@ test('Product', async ({ page }) => {
     const productPage = new ProductPage(page);
     const validationPage = new ValidationPage(page);
 
-    // Helper
-    const helper = new Helper(page);
-
+    
 
     // Open application
-    await helper.openApplication();
+    await page.goto('/');
 
 
     // Verify Home Page
@@ -28,7 +27,7 @@ test('Product', async ({ page }) => {
 
 
     // Click Products
-    await helper.click(
+    await commonMethods.click(
         productPage.products
     );
 
@@ -40,7 +39,7 @@ test('Product', async ({ page }) => {
 
 
     // Click View Product
-    await helper.click(
+    await commonMethods.click(
         productPage.viewProduct
     );
 

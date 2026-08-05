@@ -4,7 +4,8 @@ import { test } from '@playwright/test';
 import { ProductQuantityPage } from '../pages/productQuantityPage';
 import { ProductPage } from '../pages/productPage';
 
-import { Helper } from '../utils/helper';
+import commonMethods from '../utils/helper';
+
 
 
 test('Product Quantity', async ({ page }) => {
@@ -13,41 +14,38 @@ test('Product Quantity', async ({ page }) => {
     const productQuantityPage = new ProductQuantityPage(page);
     const productPage = new ProductPage(page);
 
-    // Helper
-    const helper = new Helper(page);
 
 
     // Open application
-    await helper.openApplication();
-
+    await page.goto('/');
 
     // Click Products
-    await helper.click(
+    await commonMethods.click(
         productPage.products
     );
 
 
     // Click View Product
-    await helper.click(
+    await commonMethods.click(
         productQuantityPage.viewProduct
     );
 
 
     // Enter Quantity
-    await helper.fill(
+    await commonMethods.fill(
         productQuantityPage.productQuantity,
         '4'
     );
 
 
     // Add Product to Cart
-    await helper.click(
+    await commonMethods.click(
         productQuantityPage.addToCart
     );
 
 
     // View Cart
-    await helper.click(
+    await commonMethods.click(
         productQuantityPage.viewCart
     );
 });

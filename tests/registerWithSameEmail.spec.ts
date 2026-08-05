@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 import { SignupPage } from '../pages/signupPage';
 import { ValidationPage } from '../pages/validationPage';
 
-import { Helper } from '../utils/helper';
+import commonMethods from '../utils/helper';
 
 import { existingUserData } from '../testData/existingUserData';
 
@@ -15,12 +15,10 @@ test('Register user with existing email', async ({ page }) => {
     const signupPage = new SignupPage(page);
     const validationPage = new ValidationPage(page);
 
-    // Helper
-    const helper = new Helper(page);
-
+   
 
     // Open application
-    await helper.openApplication();
+    await page.goto('/');
 
 
     // Verify Home Page
@@ -30,7 +28,7 @@ test('Register user with existing email', async ({ page }) => {
 
 
     // Click Signup / Login
-    await helper.click(
+    await commonMethods.click(
         signupPage.signup
     );
 
@@ -42,21 +40,21 @@ test('Register user with existing email', async ({ page }) => {
 
 
     // Enter Name
-    await helper.fill(
+    await commonMethods.fill(
         signupPage.name,
         existingUserData.name
     );
 
 
     // Enter Existing Email
-    await helper.fill(
+    await commonMethods.fill(
         signupPage.email,
         existingUserData.email
     );
 
 
     // Click Signup
-    await helper.click(
+    await commonMethods.click(
         signupPage.signupbutton
     );
 

@@ -5,7 +5,8 @@ import { CartPage } from '../pages/cartPage';
 import { ValidationPage } from '../pages/validationPage';
 import { SubscriptionPage } from '../pages/subscriptionPage';
 
-import { Helper } from '../utils/helper';
+import commonMethods from '../utils/helper';
+
 
 
 test('Cart', async ({ page }) => {
@@ -15,13 +16,10 @@ test('Cart', async ({ page }) => {
     const validationPage = new ValidationPage(page);
     const subscriptionPage = new SubscriptionPage(page);
 
-    // Helper
-    const helper = new Helper(page);
-
+   
 
     // Open application
-    await helper.openApplication();
-
+    await page.goto('/');
 
     // Verify Home Page
     await expect(
@@ -30,7 +28,7 @@ test('Cart', async ({ page }) => {
 
 
     // Click Cart
-    await helper.click(
+    await commonMethods.click(
         cartPage.cart
     );
 
@@ -42,14 +40,14 @@ test('Cart', async ({ page }) => {
 
 
     // Enter Email
-    await helper.fill(
+    await commonMethods.fill(
         subscriptionPage.subscriptionEmail,
         'mithun@example1919.com'
     );
 
 
     // Click Subscribe
-    await helper.click(
+    await commonMethods.click(
         subscriptionPage.subscribeButton
     );
 

@@ -4,8 +4,7 @@ import { test, expect } from '@playwright/test';
 import { TestCasesPage } from '../pages/testcasesPage';
 import { ValidationPage } from '../pages/validationPage';
 
-import { Helper } from '../utils/helper';
-
+import commonMethods from '../utils/helper';
 
 test('Test Cases', async ({ page }) => {
 
@@ -13,12 +12,10 @@ test('Test Cases', async ({ page }) => {
     const testCasesPage = new TestCasesPage(page);
     const validationPage = new ValidationPage(page);
 
-    // Helper
-    const helper = new Helper(page);
-
+   
 
     // Open application
-    await helper.openApplication();
+    await page.goto('/');
 
 
     // Verify Home Page
@@ -28,7 +25,7 @@ test('Test Cases', async ({ page }) => {
 
 
     // Click Test Cases
-    await helper.click(
+    await commonMethods.click(
         testCasesPage.testCasesLink
     );
 

@@ -18,7 +18,7 @@ export default defineConfig({
   ],
 
   use: {
-    //baseURL: 'http://automationexercise.com',
+    baseURL: 'http://automationexercise.com',
 
     trace: 'on-first-retry',
   },

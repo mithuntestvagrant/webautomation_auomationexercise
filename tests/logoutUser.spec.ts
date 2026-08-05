@@ -4,7 +4,8 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage';
 import { ValidationPage } from '../pages/validationPage';
 
-import { Helper } from '../utils/helper';
+import commonMethods from '../utils/helper';
+
 
 import { loginData } from '../testData/loginData';
 
@@ -15,12 +16,11 @@ test('Logout User', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const validationPage = new ValidationPage(page);
 
-    // Helper
-    const helper = new Helper(page);
+    
 
 
     // Open application
-    await helper.openApplication();
+    await page.goto('/');
 
 
     // Verify Home Page
@@ -30,27 +30,27 @@ test('Logout User', async ({ page }) => {
 
 
     // Click Signup / Login
-    await helper.click(
+    await commonMethods.click(
         loginPage.login
     );
 
 
     // Enter Email
-    await helper.fill(
+    await commonMethods.fill(
         loginPage.email,
         loginData.email
     );
 
 
     // Enter Password
-    await helper.fill(
+    await commonMethods.fill(
         loginPage.password,
         loginData.password
     );
 
 
     // Click Login
-    await helper.click(
+    await commonMethods.click(
         loginPage.loginButton
     );
 
@@ -62,7 +62,7 @@ test('Logout User', async ({ page }) => {
 
 
     // Click Logout
-    await helper.click(
+    await commonMethods.click(
         loginPage.logout
     );
 

@@ -104,7 +104,7 @@ import { ValidationPage } from '../pages/validationPage';
 import { HomePage } from '../pages/homePage';
 import { AccountPage } from '../pages/accountPage';
 
-import { Helper } from '../utils/helper';
+import commonMethods from '../utils/helper';
 
 test('Register user', async ({ page }) => {
 
@@ -134,11 +134,10 @@ test('Register user', async ({ page }) => {
     const homePage = new HomePage(page);
     const accountPage = new AccountPage(page);
 
-    // Helper
-    const helper = new Helper(page);
+
 
     // Open application
-    await helper.openApplication();
+    await page.goto('/');
 
     // Verify Home Page
     await expect(
@@ -146,7 +145,7 @@ test('Register user', async ({ page }) => {
     ).toBeVisible();
 
     // Signup
-    await helper.click(
+    await commonMethods.click(
         signupPage.signup
     );
 
@@ -154,17 +153,17 @@ test('Register user', async ({ page }) => {
         validationPage.newUserSignup
     ).toBeVisible();
 
-    await helper.fill(
+    await commonMethods.fill(
         signupPage.name,
         userData.name
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         signupPage.email,
         userData.email
     );
 
-    await helper.click(
+    await commonMethods.click(
         signupPage.signupbutton
     );
 
@@ -173,91 +172,91 @@ test('Register user', async ({ page }) => {
     ).toBeVisible();
 
     // Account information
-    await helper.check(
+    await commonMethods.check(
         homePage.title
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.password,
         userData.password
     );
 
-    await helper.selectOption(
+    await commonMethods.selectOption(
         homePage.days,
         userData.day
     );
 
-    await helper.selectOption(
+    await commonMethods.selectOption(
         homePage.months,
         userData.month
     );
 
-    await helper.selectOption(
+    await commonMethods.selectOption(
         homePage.years,
         userData.year
     );
 
-    await helper.check(
+    await commonMethods.check(
         homePage.newsletter
     );
 
-    await helper.check(
+    await commonMethods.check(
         homePage.offers
     );
 
     // Address information
-    await helper.fill(
+    await commonMethods.fill(
         homePage.firstName,
         userData.firstName
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.lastName,
         userData.lastName
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.company,
         userData.company
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.address1,
         userData.address1
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.address2,
         userData.address2
     );
 
-    await helper.selectOption(
+    await commonMethods.selectOption(
         homePage.country,
         userData.country
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.state,
         userData.state
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.city,
         userData.city
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.zipcode,
         userData.zipcode
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.mobileNumber,
         userData.mobileNumber
     );
 
     // Create account
-    await helper.click(
+    await commonMethods.click(
         homePage.createAccountButton
     );
 
@@ -265,7 +264,7 @@ test('Register user', async ({ page }) => {
         validationPage.accountCreated
     ).toBeVisible();
 
-    await helper.clickFirst(
+    await commonMethods.clickFirst(
         homePage.continueButton
     );
 
@@ -275,7 +274,7 @@ test('Register user', async ({ page }) => {
     ).toBeVisible();
 
     // Delete account
-    await helper.click(
+    await commonMethods.click(
         accountPage.deleteAccount
     );
 
@@ -283,7 +282,7 @@ test('Register user', async ({ page }) => {
         validationPage.accountDeleted
     ).toBeVisible();
 
-    await helper.clickFirst(
+    await commonMethods.clickFirst(
         accountPage.continueButton
     );
 });

@@ -6,7 +6,7 @@ import { CartPage } from '../pages/cartPage';
 import { ProductPage } from '../pages/productPage';
 import { AddProductPage } from '../pages/addProductPage';
 
-import { Helper } from '../utils/helper';
+import commonMethods from '../utils/helper';
 
 
 test('Add Product', async ({ page }) => {
@@ -17,14 +17,11 @@ test('Add Product', async ({ page }) => {
     const cartPage = new CartPage(page);
     const productPage = new ProductPage(page);
 
-    // Helper
-    const helper = new Helper(page);
-
 
     // Open application
-    await helper.openApplication();
-
-
+    
+  await page.goto('/');
+  
     // Verify Home Page
     await expect(
         validationPage.home
@@ -32,39 +29,39 @@ test('Add Product', async ({ page }) => {
 
 
     // Products
-    await helper.click(
+    await commonMethods.click(
         productPage.products
     );
 
 
     // First Product
-    await helper.hover(
+    await commonMethods.hover(
         addProductPage.firstProduct
     );
 
-    await helper.click(
+    await commonMethods.click(
         addProductPage.firstProduct
     );
 
 
     // Continue Shopping
-    await helper.click(
+    await commonMethods.click(
         addProductPage.continueShopping
     );
 
 
     // Second Product
-    await helper.hover(
+    await commonMethods.hover(
         addProductPage.secondProduct
     );
 
-    await helper.click(
+    await commonMethods.click(
         addProductPage.secondProduct
     );
 
 
     // View Cart
-    await helper.click(
+    await commonMethods.click(
         addProductPage.viewCart
     );
 

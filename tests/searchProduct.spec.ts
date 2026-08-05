@@ -5,7 +5,7 @@ import { SearchPage } from '../pages/searchPage';
 import { ValidationPage } from '../pages/validationPage';
 import { ProductPage } from '../pages/productPage';
 
-import { Helper } from '../utils/helper';
+import commonMethods from '../utils/helper';
 
 import { searchData } from '../testData/searchData';
 
@@ -17,12 +17,11 @@ test('Search Product', async ({ page }) => {
     const validationPage = new ValidationPage(page);
     const productPage = new ProductPage(page);
 
-    // Helper
-    const helper = new Helper(page);
+    
 
 
     // Open application
-    await helper.openApplication();
+    await page.goto('/');
 
 
     // Verify Home Page
@@ -32,20 +31,20 @@ test('Search Product', async ({ page }) => {
 
 
     // Click Products
-    await helper.click(
+    await commonMethods.click(
         productPage.products
     );
 
 
     // Enter Product Name
-    await helper.fill(
+    await commonMethods.fill(
         searchPage.searchInput,
         searchData.productName
     );
 
 
     // Click Search
-    await helper.click(
+    await commonMethods.click(
         searchPage.searchButton
     );
 

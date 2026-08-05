@@ -6,7 +6,7 @@ import { ValidationPage } from '../pages/validationPage';
 import { HomePage } from '../pages/homePage';
 import { AccountPage } from '../pages/accountPage';
 
-import { Helper } from '../utils/helper';
+import commonMethods from '../utils/helper';
 import { userData } from '../testData/userData';
 
 
@@ -18,15 +18,13 @@ test('Register user', async ({ page }) => {
     const homePage = new HomePage(page);
     const accountPage = new AccountPage(page);
 
-    // Helper
-    const helper = new Helper(page);
-
+   
 
     // =========================
     // Open Application
     // =========================
 
-    await helper.openApplication();
+    await page.goto('/');
 
 
     // =========================
@@ -42,7 +40,7 @@ test('Register user', async ({ page }) => {
     // Signup
     // =========================
 
-    await helper.click(
+    await commonMethods.click(
         signupPage.signup
     );
 
@@ -52,21 +50,21 @@ test('Register user', async ({ page }) => {
 
 
     // Enter Name
-    await helper.fill(
+    await commonMethods.fill(
         signupPage.name,
         userData.name
     );
 
 
     // Enter Email
-    await helper.fill(
+    await commonMethods.fill(
         signupPage.email,
         userData.email
     );
 
 
     // Click Signup
-    await helper.click(
+    await commonMethods.click(
         signupPage.signupbutton
     );
 
@@ -82,43 +80,43 @@ test('Register user', async ({ page }) => {
     // =========================
 
     // Title
-    await helper.check(
+    await commonMethods.check(
         homePage.title
     );
 
 
     // Password
-    await helper.fill(
+    await commonMethods.fill(
         homePage.password,
         userData.password
     );
 
 
     // Date of Birth
-    await helper.selectOption(
+    await commonMethods.selectOption(
         homePage.days,
         userData.day
     );
 
-    await helper.selectOption(
+    await commonMethods.selectOption(
         homePage.months,
         userData.month
     );
 
-    await helper.selectOption(
+    await commonMethods.selectOption(
         homePage.years,
         userData.year
     );
 
 
     // Newsletter
-    await helper.check(
+    await commonMethods.check(
         homePage.newsletter
     );
 
 
     // Special Offers
-    await helper.check(
+    await commonMethods.check(
         homePage.offers
     );
 
@@ -127,62 +125,62 @@ test('Register user', async ({ page }) => {
     // Address Information
     // =========================
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.firstName,
         userData.firstName
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.lastName,
         userData.lastName
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.company,
         userData.company
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.address1,
         userData.address1
     );
 
-    await helper.fill(
+    await commonMethods.fill(
         homePage.address2,
         userData.address2
     );
 
 
     // Country
-    await helper.selectOption(
+    await commonMethods.selectOption(
         homePage.country,
         userData.country
     );
 
 
     // State
-    await helper.fill(
+    await commonMethods.fill(
         homePage.state,
         userData.state
     );
 
 
     // City
-    await helper.fill(
+    await commonMethods.fill(
         homePage.city,
         userData.city
     );
 
 
     // Zipcode
-    await helper.fill(
+    await commonMethods.fill(
         homePage.zipcode,
         userData.zipcode
     );
 
 
     // Mobile Number
-    await helper.fill(
+    await commonMethods.fill(
         homePage.mobileNumber,
         userData.mobileNumber
     );
@@ -192,7 +190,7 @@ test('Register user', async ({ page }) => {
     // Create Account
     // =========================
 
-    await helper.click(
+    await commonMethods.click(
         homePage.createAccountButton
     );
 
@@ -204,7 +202,7 @@ test('Register user', async ({ page }) => {
 
 
     // Continue
-    await helper.clickFirst(
+    await commonMethods.clickFirst(
         homePage.continueButton
     );
 
@@ -222,7 +220,7 @@ test('Register user', async ({ page }) => {
     // Delete Account
     // =========================
 
-    await helper.click(
+    await commonMethods.click(
         accountPage.deleteAccount
     );
 
@@ -234,7 +232,7 @@ test('Register user', async ({ page }) => {
 
 
     // Continue
-    await helper.clickFirst(
+    await commonMethods.clickFirst(
         accountPage.continueButton
     );
 

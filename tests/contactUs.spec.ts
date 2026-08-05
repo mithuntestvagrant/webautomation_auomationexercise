@@ -3,7 +3,8 @@ import { test, expect } from '@playwright/test';
 
 import { ContactUsPage } from '../pages/contactUs';
 import { ValidationPage } from '../pages/validationPage';
-import { Helper } from '../utils/helper';
+import commonMethods from '../utils/helper';
+
 
 import { contactUsData } from '../testData/contactData';
 
@@ -14,14 +15,12 @@ test('Contact Us', async ({ page }) => {
     const contactUsPage = new ContactUsPage(page);
     const validationPage = new ValidationPage(page);
 
-    // Helper
-    const helper = new Helper(page);
-
+   
     // Open application
-    await helper.openApplication();
+    await page.goto('/');
 
     // Click Contact Us
-    await helper.click(
+    await commonMethods.click(
         contactUsPage.contactUs
     );
 
@@ -31,31 +30,31 @@ test('Contact Us', async ({ page }) => {
     ).toBeVisible();
 
     // Enter Name
-    await helper.fill(
+    await commonMethods.fill(
         contactUsPage.name,
         contactUsData.name
     );
 
     // Enter Email
-    await helper.fill(
+    await commonMethods.fill(
         contactUsPage.email,
         contactUsData.email
     );
 
     // Enter Subject
-    await helper.fill(
+    await commonMethods.fill(
         contactUsPage.subject,
         contactUsData.subject
     );
 
     // Enter Message
-    await helper.fill(
+    await commonMethods.fill(
         contactUsPage.message,
         contactUsData.message
     );
 
     // Submit
-    await helper.click(
+    await commonMethods.click(
         contactUsPage.submitButton
     );
 

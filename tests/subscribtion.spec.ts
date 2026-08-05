@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 import { SubscriptionPage } from '../pages/subscriptionPage';
 import { ValidationPage } from '../pages/validationPage';
 
-import { Helper } from '../utils/helper';
+import commonMethods from '../utils/helper';
 
 import { subscriptionData } from '../testData/subscriptionData';
 
@@ -15,12 +15,11 @@ test('Subscription', async ({ page }) => {
     const subscriptionPage = new SubscriptionPage(page);
     const validationPage = new ValidationPage(page);
 
-    // Helper
-    const helper = new Helper(page);
+    
 
 
     // Open application
-    await helper.openApplication();
+    await page.goto('/');
 
 
     // Verify Home Page
@@ -30,20 +29,20 @@ test('Subscription', async ({ page }) => {
 
 
     // Scroll to Subscription Email
-    await helper.scrollIntoView(
+    await commonMethods.scrollIntoView(
         subscriptionPage.subscriptionEmail
     );
 
 
     // Enter Email
-    await helper.fill(
+    await commonMethods.fill(
         subscriptionPage.subscriptionEmail,
         subscriptionData.email
     );
 
 
     // Click Subscribe
-    await helper.click(
+    await commonMethods.click(
         subscriptionPage.subscribeButton
     );
 
