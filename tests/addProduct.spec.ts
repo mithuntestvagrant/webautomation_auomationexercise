@@ -14,14 +14,13 @@ test('Add Product', async ({ page }) => {
     // Page Objects
     const addProductPage = new AddProductPage(page);
     const validationPage = new ValidationPage(page);
-    const cartPage = new CartPage(page);
     const productPage = new ProductPage(page);
 
 
     // Open application
     
   await page.goto('/');
-  
+
     // Verify Home Page
     await expect(
         validationPage.home
