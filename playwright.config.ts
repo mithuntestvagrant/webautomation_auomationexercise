@@ -1,3 +1,4 @@
+
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
@@ -12,18 +13,22 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   reporter: [
-    ['html', { outputFolder: 'playwright-report', open: 'never' }],
+    ['html'],
     ['allure-playwright']
   ],
 
   use: {
+    //baseURL: 'http://automationexercise.com',
+
     trace: 'on-first-retry',
   },
 
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+      },
     },
   ],
 });
