@@ -11,4 +11,7 @@ export class ProductPage{
      get viewProduct() {
         return this.page.locator('a', { hasText: 'View Product' }).first();
     }
+    get removeProduct(){
+        return this.page.locator("//a[@class='cart_quantity_delete']")
+    }
 }

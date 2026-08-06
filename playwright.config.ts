@@ -1,4 +1,3 @@
-
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
@@ -30,5 +29,21 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
       },
     },
+
+    
+    // {
+    //   name: 'firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //   },
+    // },
+
+    // Uncomment to run tests in WebKit (Safari)
+    // {
+    //   name: 'webkit',
+    //   use: {
+    //     ...devices['Desktop Safari'],
+    //   },
+    // },
   ],
 });

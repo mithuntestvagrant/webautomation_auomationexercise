@@ -1,6 +1,6 @@
 export const userData = {
     name: 'Mithun',
-    email: 'mithun@example464.com',
+    email: `mithun${Date.now()}@example.com`,
     password: 'MyPassword123',
     day: '10',
     month: '5',

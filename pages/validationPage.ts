@@ -1,22 +1,25 @@
-import{Page,expect} from '@playwright/test';
+
+import { Page } from '@playwright/test';
 
 export class ValidationPage {
-  private page: Page;
+    private page: Page;
 
-  constructor(page: Page) {
-    this.page = page;
-  }
+    constructor(page: Page) {
+        this.page = page;
+    }
 
-  get home(){
-    return this.page.locator('a', { hasText: 'Home' });
-  }
-  
-  get newUserSignup() {
-    return this.page.locator('h2', { hasText: 'New User Signup!' });
-  }
-  get enterAccountInformation() {
-    return this.page.locator('b', { hasText: 'Enter Account Information' });
-  }
+    get home() {
+        return this.page.locator('a', { hasText: 'Home' });
+    }
+
+    get newUserSignup() {
+        return this.page.locator('h2', { hasText: 'New User Signup!' });
+    }
+
+    get enterAccountInformation() {
+        return this.page.locator('b', { hasText: 'Enter Account Information' });
+    }
+
     get accountCreated() {
         return this.page.locator('h2', { hasText: 'Account Created!' });
     }
@@ -25,27 +28,34 @@ export class ValidationPage {
         return this.page.locator('a', { hasText: 'Logged in as' });
     }
 
-   
-
     get accountDeleted() {
         return this.page.locator('h2', { hasText: 'Account Deleted!' });
     }
 
-     get incorrectEmailPassword() {
-        return this.page.locator('p', { hasText: 'Your email or password is incorrect!' });
-    }   
+    get incorrectEmailPassword() {
+        return this.page.locator(
+            'p',
+            { hasText: 'Your email or password is incorrect!' }
+        );
+    }
 
     get emailAlreadyExist() {
-        return this.page.locator('p', { hasText: 'Email Address already exist!' });
-    }   
+        return this.page.locator(
+            'p',
+            { hasText: 'Email Address already exist!' }
+        );
+    }
 
     get getinTouch() {
         return this.page.locator('h2', { hasText: 'Get In Touch' });
-    }   
-     get successMessage() {
-        return this.page.locator('div[class="status alert alert-success"]');
     }
-   
+
+    get successMessage() {
+        return this.page.locator(
+            'div[class="status alert alert-success"]'
+        );
+    }
+
     get testCases() {
         return this.page.locator('h2', { hasText: 'Test Cases' });
     }
@@ -53,6 +63,7 @@ export class ValidationPage {
     get allProducts() {
         return this.page.locator('h2', { hasText: 'All Products' });
     }
+
     get productDetails() {
         return this.page.locator('h2', { hasText: 'Product Details' });
     }
@@ -63,26 +74,32 @@ export class ValidationPage {
 
     get subscription() {
         return this.page.locator('h2', { hasText: 'Subscription' });
-    }   
-     get successMessageSubscription() {
+    }
+
+    get successMessageSubscription() {
         return this.page.locator('div[class="alert-success alert"]');
     }
 
     get verifyfirstProduct() {
-
         return this.page.locator("//a[@href='/product_details/1']");
     }
 
     get verifysecondProduct() {
         return this.page.locator("//a[@href='/product_details/2']");
-    }   
-    
+    }
 
-    
+    get addressDetails() {
+        return this.page.locator('h2', { hasText: 'Address Details' });
+    }
 
+    get reviewYourOrder() {
+        return this.page.locator('h2', { hasText: 'Review Your Order' });
+    }
 
-
-
-
-
+    get orderPlacedSuccessfully() {
+        return this.page.getByText(
+            'Order Placed Successfully',
+            { exact: false }
+        );
+    }
 }

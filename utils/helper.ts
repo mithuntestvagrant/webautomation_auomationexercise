@@ -1,9 +1,9 @@
 
-import { Page, Locator } from '@playwright/test';
+import { Locator } from '@playwright/test';
 
 class Helper {
 
-    // // Open application
+    // Open application
     // async openApplication() {
     //     await this.page.goto('http://automationexercise.com');
     // }
@@ -13,7 +13,7 @@ class Helper {
         await element.click();
     }
 
-    // Click first element
+    // Click first matching element
     async clickFirst(element: Locator) {
         await element.first().click();
     }
@@ -23,7 +23,7 @@ class Helper {
         await element.hover();
     }
 
-    // Fill
+    // Fill input field
     async fill(element: Locator, value: string) {
         await element.fill(value);
     }
@@ -33,7 +33,7 @@ class Helper {
         await element.check();
     }
 
-    // Select dropdown
+    // Select dropdown option
     async selectOption(element: Locator, value: string) {
         await element.selectOption(value);
     }
@@ -43,10 +43,14 @@ class Helper {
         await element.scrollIntoViewIfNeeded();
     }
 
-    // Wait for element
-    async waitForElement(element: Locator) {
+    // Wait for element to be visible
+    async waitForElement(
+        element: Locator,
+        timeout: number = 10000
+    ) {
         await element.waitFor({
-            state: 'visible'
+            state: 'visible',
+            timeout: timeout
         });
     }
 }

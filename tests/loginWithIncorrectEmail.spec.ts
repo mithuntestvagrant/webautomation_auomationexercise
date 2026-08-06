@@ -9,8 +9,7 @@ import commonMethods from '../utils/helper';
 
 import { loginData } from '../testData/loginData';
 
-
-test('Login User', async ({ page }) => {
+test('Login with Incorrect Email', async ({ page }) => {
 
     // Page Objects
     const loginPage = new LoginPage(page);
